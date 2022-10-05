@@ -11,4 +11,4 @@ def index():
         db.session.add(tasks)
         db.session.commit()
     tasks = db.session.query(Task).all()
-    return render_template('base.html', title='Home', tasks=tasks, form=form)
+    return render_template('base.html', title='Home', tasks=tasks , form=form)

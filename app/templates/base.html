@@ -7,15 +7,33 @@
 
 
 {% block content %}
-    
-<h1>Welcome to  Todoist</h1>
-<br>
-<br>
-<br>
-<br>
-    
-    {% if form %}
-    {{ wtf.quick_form(form) }}
-    <br>
-    {% endif %}
+ 
+<table class="table table-hover">
+    <tr>
+        <td>
+            <h1>Welcome to Todoist</h1>
+            <br>
+            <br>
+
+    </td>
+    </tr>
+    <tr>
+        <td>
+            {% if form %}
+            {{ wtf.quick_form(form) }}
+            <br>
+            {% endif %}
+            <br>
+        </td>
+    </tr>
+</table>
+{% for task in tasks %}
+<table class="table table-hover">
+    <tr>
+        <td>
+        {{task.title}}
+        </td>
+    </tr>
+</table>
+{% endfor %}
 {% endblock %}
