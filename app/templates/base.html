@@ -31,9 +31,26 @@
 <table class="table table-hover">
     <tr>
         <td>
-        {{task.title}}
+        {{task.id}} | {{task.title}}
+        <br>
+        <br>
+        status:
+        {% if task.status == False %}
+        Not Completed
+        {% else %}
+        Completed
+        {% endif %}
+        <br>
+        <br>
+        <form action="/update/{{ task.id }}">
+            <button type="submit">Update</button>
+        </form>
+        <form action="/delete/{{ task.id }}">
+            <button type="submit">Delete</button>
+        </form>
         </td>
     </tr>
+
 </table>
 {% endfor %}
 {% endblock %}
