@@ -1,5 +1,5 @@
 from app import app, db
-from flask import render_template, url_for, redirect
+from flask import render_template, url_for, redirect, flash, request
 from app.models import Task
 from app.forms import TaskForm
 
@@ -29,3 +29,22 @@ def delete(task_id):
     db.session.delete(task)
     db.session.commit()
     return redirect(url_for("index"))
+
+@app.route('/edit_task/<int:task_id>', methods=['GET', 'POST'])
+def edit_task(task_id):
+    form = TaskForm()
+    task = db.session.query(Task).filter(Task.id == task_id).first()
+
+    if form.validate_on_submit():
+        task.title = form.title.data
+    #    task = Task(title=form.title.data)
+    #    db.session.add(task)
+        db.session.commit()
+        return redirect(url_for("index"))
+    
+    # elif request.method == 'GET':
+    #     form.title.data = task.title
+
+    form.title.data = task.title
+    return render_template('edit_task.html', form=form)
+

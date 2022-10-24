@@ -33,7 +33,6 @@
         <td>
         {{task.id}} | {{task.title}}
         <br>
-        <br>
         status:
         {% if task.status == False %}
         Not Completed
@@ -41,13 +40,17 @@
         Completed
         {% endif %}
         <br>
-        <br>
+        <tr>    
         <form action="/update/{{ task.id }}">
             <button type="submit">Update</button>
         </form>
         <form action="/delete/{{ task.id }}">
             <button type="submit">Delete</button>
         </form>
+        <form action="/edit_task/{{ task.id }}">
+            <button type="submit">Edit</button>
+        </form>
+        </tr>
         </td>
     </tr>
 
